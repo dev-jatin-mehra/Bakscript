@@ -1,0 +1,5 @@
+make num n = 3
+aslong n > 0 :
+    show "Counting down:"
+    show n
+    make n = n - 1

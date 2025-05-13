@@ -1,0 +1,3 @@
+make num a = 10  # Integer
+make decimal b = 3.14  # Float
+make text c = "BakScript"  # String

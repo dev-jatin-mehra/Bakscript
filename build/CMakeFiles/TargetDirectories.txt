@@ -1,0 +1,3 @@
+D:/ProjectList/BakScript/build/CMakeFiles/BakScript.dir
+D:/ProjectList/BakScript/build/CMakeFiles/edit_cache.dir
+D:/ProjectList/BakScript/build/CMakeFiles/rebuild_cache.dir

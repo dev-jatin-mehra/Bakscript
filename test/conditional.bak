@@ -1,0 +1,4 @@
+when x > 5 :
+    show "Big number"
+otherwise : 
+    show "Small number"
