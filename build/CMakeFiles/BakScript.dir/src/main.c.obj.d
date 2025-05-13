@@ -1,16 +1,17 @@
-C:/Program Files (x86)/Windows Kits/10/include/10.0.22621.0/ucrt/stdio.h
-C:/Program Files (x86)/Windows Kits/10/include/10.0.22621.0/ucrt/corecrt.h
-C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.41.34120/include/vcruntime.h
-C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.41.34120/include/sal.h
-C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.41.34120/include/concurrencysal.h
-C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.41.34120/include/vadefs.h
-C:/Program Files (x86)/Windows Kits/10/include/10.0.22621.0/ucrt/corecrt_wstdio.h
-C:/Program Files (x86)/Windows Kits/10/include/10.0.22621.0/ucrt/corecrt_stdio_config.h
-C:/Program Files (x86)/Windows Kits/10/include/10.0.22621.0/ucrt/stdlib.h
-C:/Program Files (x86)/Windows Kits/10/include/10.0.22621.0/ucrt/corecrt_malloc.h
-C:/Program Files (x86)/Windows Kits/10/include/10.0.22621.0/ucrt/corecrt_search.h
-C:/Program Files (x86)/Windows Kits/10/include/10.0.22621.0/ucrt/stddef.h
-C:/Program Files (x86)/Windows Kits/10/include/10.0.22621.0/ucrt/corecrt_wstdlib.h
-C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.41.34120/include/limits.h
-D:/ProjectList/BakScript/src/../include/lexer.h
-D:/ProjectList/BakScript/include/./token.h
+CMakeFiles/BakScript.dir/src/main.c.obj: \
+ D:\ProjectList\BakScript\src\main.c c:\mingw\include\stdio.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\6.3.0\include\stddef.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\6.3.0\include\stdarg.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\string.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ d:\projectlist\bakscript\include\lexer.h \
+ d:\projectlist\bakscript\include\token.h \
+ d:\projectlist\bakscript\include\parser.h \
+ d:\projectlist\bakscript\include\lexer.h \
+ d:\projectlist\bakscript\include\ast.h \
+ d:\projectlist\bakscript\include\ast.h \
+ d:\projectlist\bakscript\include\error.h \
+ d:\projectlist\bakscript\include\lexer.h

@@ -8,7 +8,10 @@ typedef enum
     astNode_ASSIGNMENT,
     astNode_PRINT,
     astNode_EXPRESSION,
-    astNode_NUMBER
+    astNode_NUMBER,
+    astNode_STRING,
+    astNode_IDENTIFIER,
+    astNode_VARIABLE
 } astNodeType;
 
 typedef struct ASTNode
@@ -23,6 +26,7 @@ typedef struct ASTNode
         } binary;
         int number;
         char *variable;
+        char *stringValue;
     };
     struct ASTNode *next;
 } ASTNode;

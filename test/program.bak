@@ -1,0 +1,9 @@
+make num x = 10
+make num y = 20
+show "The value of x is:"
+show x
+show "The value of y is:"
+show y
+make num sum = x + y
+show "The sum of x and y is:"
+show sum

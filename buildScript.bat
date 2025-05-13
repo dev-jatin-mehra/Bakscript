@@ -1,5 +1,5 @@
 rmdir /s /q build
 mkdir build && cd build
-cmake .. -G "NMake Makefiles"
+cmake .. -G "MinGW Makefiles"
 cmake --build .
-BakScript
+BakScript.exe

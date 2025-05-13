@@ -11,10 +11,11 @@ ASTNode *parseAssignment(Lexer *lexer);
 ASTNode *parsePrintStatement(Lexer *lexer);
 ASTNode *parseExpression(Lexer *lexer);
 ASTNode *parseNumber(Lexer *lexer);
+ASTNode *parseVariableDeclaration(Lexer *lexer);
 
-void advanceParser(Lexer *lexer);
+Token advanceParser(Lexer *lexer);
 int match(Lexer *lexer, TK_TYPE type);
-int expect(Lexer *lexer, TK_TYPE type);
+void expect(Lexer *lexer, TK_TYPE type, const char *errorMessage);
 int isKeyword(TK_TYPE type);
 void synchronize(Lexer *lexer);
 

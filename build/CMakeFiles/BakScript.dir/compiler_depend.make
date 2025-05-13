@@ -1,2 +1,2 @@
-﻿# Empty compiler generated dependencies file for BakScript.
+# Empty compiler generated dependencies file for BakScript.
 # This may be replaced when dependencies are built.

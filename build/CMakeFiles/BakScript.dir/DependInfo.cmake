@@ -8,8 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "D:/ProjectList/BakScript/src/lexer.c" "CMakeFiles/BakScript.dir/src/lexer.c.obj" "msvc" "CMakeFiles/BakScript.dir/src/lexer.c.obj.d"
-  "D:/ProjectList/BakScript/src/main.c" "CMakeFiles/BakScript.dir/src/main.c.obj" "msvc" "CMakeFiles/BakScript.dir/src/main.c.obj.d"
+  "D:/ProjectList/BakScript/src/ast.c" "CMakeFiles/BakScript.dir/src/ast.c.obj" "gcc" "CMakeFiles/BakScript.dir/src/ast.c.obj.d"
+  "D:/ProjectList/BakScript/src/error/error.c" "CMakeFiles/BakScript.dir/src/error/error.c.obj" "gcc" "CMakeFiles/BakScript.dir/src/error/error.c.obj.d"
+  "D:/ProjectList/BakScript/src/lexer.c" "CMakeFiles/BakScript.dir/src/lexer.c.obj" "gcc" "CMakeFiles/BakScript.dir/src/lexer.c.obj.d"
+  "D:/ProjectList/BakScript/src/main.c" "CMakeFiles/BakScript.dir/src/main.c.obj" "gcc" "CMakeFiles/BakScript.dir/src/main.c.obj.d"
+  "D:/ProjectList/BakScript/src/parser.c" "CMakeFiles/BakScript.dir/src/parser.c.obj" "gcc" "CMakeFiles/BakScript.dir/src/parser.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

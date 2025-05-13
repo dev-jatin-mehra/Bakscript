@@ -1,1 +1,1 @@
-﻿CMakeFiles/BakScript.dir/src/main.c.obj CMakeFiles/BakScript.dir/src/lexer.c.obj
+CMakeFiles/BakScript.dir/src/main.c.obj CMakeFiles/BakScript.dir/src/lexer.c.obj CMakeFiles/BakScript.dir/src/error/error.c.obj CMakeFiles/BakScript.dir/src/parser.c.obj CMakeFiles/BakScript.dir/src/ast.c.obj
