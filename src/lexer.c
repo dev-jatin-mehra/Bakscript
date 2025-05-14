@@ -145,6 +145,9 @@ Token getNextToken(Lexer *lexer)
     case ':':
         advance(lexer);
         return (Token){TOKEN_COLON, ":"};
+    case ';':
+        advance(lexer);
+        return (Token){TOKEN_SEMICOLON, ";"};
     case '\0':
         return (Token){TOKEN_EOF, "EOF"};
     default:

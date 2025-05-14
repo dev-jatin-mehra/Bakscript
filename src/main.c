@@ -8,7 +8,7 @@
 
 int main()
 {
-    char *bakscript_code = "make num n = 3\n show \"The value of n is\" \n show n";
+    char *bakscript_code = "make num n = 3;\nshow \"The value of n is\"; \nshow n;";
     printf("Code:\n%s\n\n", bakscript_code);
 
     printf("Tokens:\n");

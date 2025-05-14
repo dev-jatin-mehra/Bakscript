@@ -103,19 +103,23 @@ ASTNode *parseProgram(Lexer *lexer)
 ASTNode *parseStatement(Lexer *lexer)
 {
     Token token = advanceParser(lexer);
-    if (token.type == TOKEN_IDENTIFIER)
+    if (token.type == TOKEN_EOF)
     {
-        if (match(lexer, TOKEN_EQUAL))
-        {
-            return parseAssignment(lexer);
-        }
-        else
-        {
-            reportError(ERROR_UNEXPECTED_TOKEN, lexer->pos, "Expected '=' after identifier.");
-            return NULL;
-        }
+        return NULL;
     }
-    else if (token.type == TOKEN_SHOW)
+    // if (token.type == TOKEN_IDENTIFIER)
+    // {
+    //     if (match(lexer, TOKEN_EQUAL))
+    //     {
+    //         return parseAssignment(lexer);
+    //     }
+    //     else
+    //     {
+    //         reportError(ERROR_UNEXPECTED_TOKEN, lexer->pos, "Expected '=' after identifier.");
+    //         return NULL;
+    //     }
+    // }
+    if (token.type == TOKEN_SHOW)
     {
         return parsePrintStatement(lexer);
     }
@@ -129,15 +133,18 @@ ASTNode *parseStatement(Lexer *lexer)
 
 ASTNode *parseVariableDeclaration(Lexer *lexer)
 {
-    Token token = advanceParser(lexer);
-    if (token.type != TOKEN_IDENTIFIER)
+    Token typeToken = advanceParser(lexer);
+
+    if (typeToken.type != TOKEN_NUM && typeToken.type != TOKEN_DECIMAL && typeToken.type != TOKEN_TEXT)
     {
         reportError(ERROR_UNEXPECTED_TOKEN, lexer->pos, "Expected [num,decimal,text] after make.");
         synchronize(lexer);
         return NULL;
     }
-    token = advanceParser(lexer);
-    if (token.type != TOKEN_IDENTIFIER)
+
+    Token varToken = advanceParser(lexer);
+
+    if (varToken.type != TOKEN_IDENTIFIER)
     {
         reportError(ERROR_UNEXPECTED_TOKEN, lexer->pos, "Expected variable name after type.");
         synchronize(lexer);
@@ -145,39 +152,47 @@ ASTNode *parseVariableDeclaration(Lexer *lexer)
     }
 
     ASTNode *varNode = create_ast_node(astNode_ASSIGNMENT);
-    varNode->variable = strdup(token.lexeme);
+    varNode->variable = strdup(varToken.lexeme);
 
     expect(lexer, TOKEN_EQUAL, "Expected '=' after variable name.");
 
     ASTNode *valueNode = parseExpression(lexer);
-    if (valueNode != NULL)
+    if (valueNode == NULL)
     {
-        varNode->binary.right = valueNode;
+        reportError(ERROR_SYNTAX, lexer->pos, "Invalid expression.");
+        synchronize(lexer);
+        return NULL;
     }
+    varNode->binary.right = valueNode;
     return varNode;
 }
 
 ASTNode *parsePrintStatement(Lexer *lexer)
 {
     ASTNode *printNode = create_ast_node(astNode_PRINT);
-    Token token = advanceParser(lexer);
+    Token token = getNextToken(lexer); // ⬅️ Changed to getNextToken, not advance
 
     if (token.type == TOKEN_STRING)
     {
-        ASTNode *stringNode = create_ast_node(astNode_STRING);
-        stringNode->stringValue = strdup(token.lexeme);
-        printNode->binary.left = stringNode;
+        printNode->binary.left = create_ast_node(astNode_STRING);
+        printNode->binary.left->stringValue = strdup(token.lexeme);
+        advanceParser(lexer); // Only advance after confirmation
     }
     else if (token.type == TOKEN_IDENTIFIER)
     {
-        ASTNode *variableNode = create_ast_node(astNode_IDENTIFIER);
-        variableNode->variable = strdup(token.lexeme);
-        printNode->binary.left = variableNode;
+        printNode->binary.left = create_ast_node(astNode_IDENTIFIER);
+        printNode->binary.left->variable = strdup(token.lexeme);
+        advanceParser(lexer); // Only advance after confirmation
+    }
+    else if (token.type == TOKEN_SEMICOLON) // end of the line represnetation i.e. move to next line
+    {
+        token = getNextToken(lexer);
     }
     else
     {
         reportError(ERROR_SYNTAX, lexer->pos, "Expected a string or variable after 'show'.");
         synchronize(lexer);
+        return NULL;
     }
 
     return printNode;
@@ -198,23 +213,52 @@ ASTNode *parseAssignment(Lexer *lexer)
 
 ASTNode *parseExpression(Lexer *lexer)
 {
-    Token token = advanceParser(lexer);
+    // Token token = advanceParser(lexer);
+
+    // if (token.type == TOKEN_NUMBER)
+    // {
+    //     return parseNumber(lexer);
+    // }
+    // else if (token.type == TOKEN_IDENTIFIER)
+    // {
+    //     ASTNode *identifierNode = create_ast_node(astNode_VARIABLE);
+    //     identifierNode->variable = strdup(token.lexeme);
+    //     return identifierNode;
+    // }
+    // else if (token.type == TOKEN_STRING)
+    // {
+    //     ASTNode *stringNode = create_ast_node(astNode_STRING);
+    //     stringNode->variable = strdup(token.lexeme);
+    //     return stringNode;
+    // }
+    // else
+    // {
+    //     reportError(ERROR_SYNTAX, lexer->pos, "Invalid expression.");
+    //     synchronize(lexer);
+    //     return NULL;
+    // }
+
+    Token token = getNextToken(lexer);
+    ASTNode *left = NULL;
 
     if (token.type == TOKEN_NUMBER)
     {
-        return parseNumber(lexer);
+        left = create_ast_node(astNode_NUMBER);
+        left->number = atoi(token.lexeme);
     }
     else if (token.type == TOKEN_IDENTIFIER)
     {
-        ASTNode *identifierNode = create_ast_node(astNode_VARIABLE);
-        identifierNode->variable = strdup(token.lexeme);
-        return identifierNode;
+        left = create_ast_node(astNode_VARIABLE);
+        left->variable = strdup(token.lexeme);
     }
     else if (token.type == TOKEN_STRING)
     {
-        ASTNode *stringNode = create_ast_node(astNode_STRING);
-        stringNode->variable = strdup(token.lexeme);
-        return stringNode;
+        left = create_ast_node(astNode_STRING);
+        left->stringValue = strdup(token.lexeme);
+    }
+    else if (token.type == TOKEN_SEMICOLON) /// end of the line represnetation i.e. move to next line
+    {
+        token = getNextToken(lexer);
     }
     else
     {
